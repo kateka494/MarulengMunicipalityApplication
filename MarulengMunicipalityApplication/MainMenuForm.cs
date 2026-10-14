@@ -60,11 +60,17 @@ namespace MarulengMunicipalityApplication
                     reportForm.ShowDialog();
                     this.Show();
                 }
+
                 else if (panel == PanelLocalEvents)
                 {
-                    MessageBox.Show("Local Events feature coming soon!", "Coming Soon",
-                                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Hide();
+
+                    LocalEventsForm eventsForm = new LocalEventsForm();
+                    eventsForm.ShowDialog();
+
+                    this.Show();
                 }
+
                 else if (panel == PanelTrackQueries)
                 {
                     this.Hide();

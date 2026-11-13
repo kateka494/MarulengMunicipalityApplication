@@ -57,6 +57,22 @@ namespace MarulengMunicipalityApplication
             button3.ForeColor = Color.FromArgb(0, 51, 102);
             button3.FlatStyle = FlatStyle.Flat;
 
+            // Add Event button
+            buttonAddEvent.Text = "Add Event / Announcement";
+            buttonAddEvent.BackColor = Color.FromArgb(0, 150, 136);
+            buttonAddEvent.ForeColor = Color.White;
+            buttonAddEvent.FlatStyle = FlatStyle.Flat;
+            buttonAddEvent.UseVisualStyleBackColor = false;
+            buttonAddEvent.FlatAppearance.BorderSize = 0;
+            buttonAddEvent.Font = new Font("Arial", 10F, FontStyle.Bold);
+            buttonAddEvent.Cursor = Cursors.Hand;
+
+            // Back button
+            button3.UseVisualStyleBackColor = false;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.Font = new Font("Arial", 10F, FontStyle.Bold);
+            button3.Cursor = Cursors.Hand;
+
             listView1.BackColor = Color.White;
             listView1.ForeColor = Color.FromArgb(40, 40, 40);
             listView1.Font = new Font("Arial", 10F);
@@ -387,6 +403,32 @@ namespace MarulengMunicipalityApplication
         private void label1_Click(object sender, EventArgs e)
         {
             // No action needed.
+        }
+
+        private void buttonAddEvent_Click(object sender, EventArgs e)
+        {
+            // Open the Add Event form
+            using (AddEventForm addForm = new AddEventForm())
+            {
+                if (addForm.ShowDialog() == DialogResult.OK)
+                {
+                    // Refresh the event categories
+                    LoadCategories();
+
+                    // Refresh the event list
+                    DisplayEvents();
+
+                    // Refresh recommendations
+                    DisplayRecommendations();
+
+                    MessageBox.Show(
+                        "The noticeboard has been updated.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                }
+            }
         }
     }
 }

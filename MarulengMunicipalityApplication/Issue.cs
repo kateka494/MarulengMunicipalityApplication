@@ -15,7 +15,8 @@ namespace MarulengMunicipalityApplication
         public string Description { get; set; }
         public List<string> Attachments { get; set; }
         public DateTime Timestamp { get; set; }
-        public string Status { get; set; }    
+        public string Status { get; set; }
+        public List<string> StatusHistory { get; set; }
         public string Priority { get; set; }    
         public Issue(string location, string category, string description)
         {
@@ -25,6 +26,9 @@ namespace MarulengMunicipalityApplication
             Attachments = new List<string>();
             Timestamp = DateTime.Now;
             Status = "Pending";
+            StatusHistory = new List<string>();
+            StatusHistory.Add(DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+                + " - Request submitted: Pending");
             Priority = "Medium";
         }
 

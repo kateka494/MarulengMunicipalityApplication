@@ -15,7 +15,44 @@ namespace MarulengMunicipalityApplication
         public MainMenuForm()
         {
             InitializeComponent();
+            DataStore.InitialiseServiceGraph();
+            ApplyMainMenuStyle();
             SetupClickablePanels();
+        }
+
+        // Apply consistent municipal styling
+        private void ApplyMainMenuStyle()
+        {
+            this.BackColor = Color.AliceBlue;
+            this.Font = new Font("Arial", 10F);
+
+           
+            Panel[] menuPanels =
+            {
+        PanelReportIssues,
+        PanelLocalEvents,
+        PanelTrackQueries
+    };
+
+            foreach (Panel panel in menuPanels)
+            {
+                panel.BackColor = Color.White;
+                panel.BorderStyle = BorderStyle.FixedSingle;
+                panel.Cursor = Cursors.Hand;
+            }
+
+            // Style the Reviewer Dashboard button
+            buttonReviewer.BackColor = Color.FromArgb(0, 51, 102);
+            buttonReviewer.ForeColor = Color.White;
+            buttonReviewer.FlatStyle = FlatStyle.Flat;
+            buttonReviewer.Font = new Font("Arial", 10F, FontStyle.Bold);
+            buttonReviewer.FlatAppearance.BorderSize = 0;
+            buttonReviewer.FlatAppearance.MouseOverBackColor =
+                Color.FromArgb(0, 80, 150);
+            buttonReviewer.FlatAppearance.MouseDownBackColor =
+                Color.FromArgb(0, 40, 90);
+            buttonReviewer.UseVisualStyleBackColor = false;
+            buttonReviewer.Cursor = Cursors.Hand;
         }
 
         private void SetupClickablePanels()
@@ -38,12 +75,16 @@ namespace MarulengMunicipalityApplication
                 ctrl.Click += (s, e) => HandlePanelClick(panel);
             }
 
-            // Hover effects
-            panel.MouseEnter += (s, e) => {
-                panel.BackColor = Color.FromArgb(245, 248, 255);
+
+            
+            panel.MouseEnter += (s, e) =>
+            {
+                panel.BackColor = Color.FromArgb(220, 235, 250);
                 panel.BorderStyle = BorderStyle.Fixed3D;
             };
-            panel.MouseLeave += (s, e) => {
+
+            panel.MouseLeave += (s, e) =>
+            {
                 panel.BackColor = Color.White;
                 panel.BorderStyle = BorderStyle.FixedSingle;
             };
@@ -99,6 +140,21 @@ namespace MarulengMunicipalityApplication
         private void lblWelcome_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonReviewer_Click(object sender, EventArgs e)
+        {
+          
+            {
+                ReviewerForm reviewer = new ReviewerForm();
+                reviewer.ShowDialog();
+            }
+        }
+
+        private void buttonDataStructures_Click(object sender, EventArgs e)
+        {
+            DataStructuresForm form = new DataStructuresForm();
+            form.ShowDialog();
         }
     }
 }
